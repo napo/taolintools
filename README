@@ -1,2 +1,7 @@
 This project contains some tools for extract some reports for the taolin application.
 Look http://taolin.fbk.eu for more information
+
+REPORT
+cake -app taolintools report http://taolin.fbk.eu
+
+create a report about the current month for the gived url
