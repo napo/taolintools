@@ -12,6 +12,7 @@ class UsersEmailShell extends Shell {
     }
 
     function main() {
+        Configure::write('debug', '0');
         if (count($this->args) == 0) {
             echo "Please give me the domain name\n\tExample: users_email fbk.eu\n";
             die();
@@ -20,7 +21,6 @@ class UsersEmailShell extends Shell {
             if (count($this->args == 2)) {
                 $blacklist = file($this->args[1],FILE_IGNORE_NEW_LINES);
             }
-
             $domain = $this->args[0];
             $conditions = array('active' => 1,'deleted' => 0, array('NOT' =>array('login ' => null)));
             $users = $this->User->find('all', array('conditions' => $conditions,'fields' => array('User.name','User.surname','User.login','COALESCE(mod_email, email) AS "User__email"'))); 

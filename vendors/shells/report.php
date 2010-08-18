@@ -11,7 +11,7 @@ class ReportShell extends Shell {
         $months_eng =array ('01' => 'January', '02' => 'February', '03' => 'March', '04'=> 'April','05' => 'May','06' => 'June','07' => 'July','08' => 'August','09' => 'September','10' =>'October', '11' => 'November', '12' => 'December');
         $months_ita =array ('01' => 'gennaio', '02' => 'febbraio', '03' => 'marzo', '04'=> 'aprile','05' => 'maggio','06' => 'giugno','07' => 'luglio','08' => 'agosto','09' => 'settembre','10' =>'ottobre', '11' => 'novembre', '12' => 'dicembre');
 
-        Configure::write('debug', '2');
+        Configure::write('debug', '0');
         $month = date('m');
         $year = date('Y');
         $day = date('d');
@@ -34,6 +34,7 @@ class ReportShell extends Shell {
                 $lastday = date('Y-m-d G:i:s', mktime(0, 0, 0, $month+1, 0, $year));
                 break;
             case 3:
+                $month = "12"; #works only for december
                 $firstday = $this->args[1];
                 $lastday = $this->args[2];
                 break;

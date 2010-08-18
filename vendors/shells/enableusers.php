@@ -37,18 +37,20 @@ class EnableUsersShell extends Shell {
         $this->Aco =& $this->Acl->Aco; 
        
         $conditions = array('active' => 0,'deleted' => 0, array('NOT' =>array('login ' => null)));
-        $users = $this->User->find('all', array('limit' => 2,'conditions' => $conditions,'fields' => array('User.active','User.created','User.id','User.name','User.surname','User.gender','User.login'),'order' => array('created DESC')));
+        #$users = $this->User->find('all', array('limit' => 2,'conditions' => $conditions,'fields' => array('User.active','User.created','User.id','User.name','User.surname','User.gender','User.login'),'order' => array('created DESC')));
+        $users = $this->User->find('all', array('conditions' => $conditions,'fields' => array('User.active','User.created','User.id','User.name','User.surname','User.gender','User.login'),'order' => array('created DESC')));
         foreach ($users as $user) {
             $id = $user['User']['id'];
             $UsersController->admin_activate($id,1);
             $name = $user['User']['name'];
             $gender = $user['User']['gender'];
+            $login = $user['User']['login'];
             $email = $user['User']['login'];
-            $email = $email + "@" +  $domain;
+            $email = $login . "@" .  $domain;
             $MailController = new MailerController();
             $MailController->constructClasses();
             $MailController->sendWelcome($name,$email,$sender,$subject, $company, $url_taolin, $gender);
-            echo "$user['User']['login']";
+            echo "$login\n";
         }
    }
 
