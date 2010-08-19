@@ -13,11 +13,24 @@ create a comma separeted value list with the email of each users.
 To exclude some users simple give a blacklistfile with the list of logins.
 
 ACTIVATION USERS
-cake -app taolintools enableusers sender_email domain_email company_name subject_email url_taolin
+[1] cake -app taolintools enableusers·
+[2] cake -app taolintools enableusers show_num_activable_users
+[3] cake -app taolintools enableusers show_num_activable_users activate
+[4] cake -app taolintools enableusers sender_email domain_email company_name subject_email url_taolin
+[5] cake -app taolintools enableusers show_num_activable_users sender_email domain_email company_name subject_email url_taolin
 
-this enable each new users in the database with login != NULL and send a email
-text email can change by the view welcome.ctp
-It's necessary update the roaster of the jabber server
+[1] show all the activable users
+[2] show the first N activable users
+[3] show the first N activable users and activate (1=yes 0=no)
+[4] enable each new users in the database and send a email
+[5] enable the first N users in the database and send a email
+
+notes:
+- the script works only for the users with login != NULL
+- text email can change by the view welcome.ctp
+- is necessary update the roaster of the jabber server
+	ex. ejabberdctl srg_user_add login node roaster server
+
 
 CHECK ENABLED USER
 cake -app taolintools checkenableduser login
