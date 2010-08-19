@@ -19,5 +19,8 @@ this enable each new users in the database with login != NULL and send a email
 text email can change by the view welcome.ctp
 It's necessary update the roaster of the jabber server
 
+CHECK ENABLED USER
+cake -app taolintools checkenableduser login
 
+the script checks whether the user exists and if not already enabled
 
